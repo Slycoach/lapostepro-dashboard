@@ -877,6 +877,59 @@ td.cp{background:#E4F3EC;color:var(--vert);font-weight:600}
   .panel.sig .card{background:#fff!important;border:1px solid #DDD!important}
 }
 
+/* ══════ BANDEAUX DE PARTIE ══════ */
+.partband{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;background:linear-gradient(110deg,var(--indigo),var(--violet) 130%);color:#fff;border-radius:14px;padding:18px 22px;margin:54px 0 10px}
+.partband.an{background:linear-gradient(110deg,#15748A,#1D9FB8 130%)}
+.partband.ca{background:linear-gradient(110deg,#A8365C,var(--framboise) 130%)}
+.partband span{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;background:rgba(255,255,255,.2);border-radius:100px;padding:5px 11px}
+.partband b{font-family:var(--disp);font-size:24px;letter-spacing:-.03em}
+.partband em{font-style:normal;font-size:13px;color:rgba(255,255,255,.8)}
+
+/* ══════ SIGNAUX DÉTAILLÉS ══════ */
+.sgd{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:22px;margin-top:14px;border-left:5px solid var(--cyan)}
+.sgd.eco{border-left-color:var(--framboise)}
+.sgd-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sgd-h h4{font-size:20px}
+.sgd-h .q{font-size:13px;color:var(--muted);font-style:italic}
+.sgd-h .v{margin-left:auto;font-family:var(--disp);font-size:30px;font-weight:800;letter-spacing:-.04em}
+.sgd-h .v small{font-size:13px;color:var(--muted)}
+.sgd>p{font-size:13.5px;color:var(--ink-2);margin-top:10px;max-width:84ch}
+.sgd-g{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.sgd-g div{border-radius:11px;padding:12px 14px}
+.sgd-g .up{background:#EAF6F0}
+.sgd-g .down{background:#FBE9E8}
+.sgd-g .k{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:5px}
+.sgd-g .up .k{color:#226B51}.sgd-g .down .k{color:#A82F2B}
+.sgd-g p{font-size:12.5px;color:var(--ink-2)}
+.sgd-f{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.sgd-f div{font-size:12.5px;color:var(--ink-2)}
+.sgd-f .k{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px}
+.sgd-lpp{background:var(--lav);border-radius:11px;padding:12px 14px;margin-top:12px;font-size:12.5px;color:var(--ink-2)}
+.sgd-lpp b{color:var(--violet)}
+
+/* ══════ GRILLE D'ACTIONS ══════ */
+.actgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ac{background:#fff;border-radius:14px;box-shadow:var(--sh);padding:16px;border-top:4px solid var(--violet)}
+.ac-h{display:flex;align-items:center;gap:8px}
+.ac-k{font-family:var(--mono);font-size:11.5px;font-weight:600;color:#fff;border-radius:7px;padding:3px 7px}
+.ac-ax{font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.ac-h em{margin-left:auto;font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase}
+.ac h4{font-size:14.5px;margin-top:11px;line-height:1.3}
+.ac p{font-size:12.5px;color:var(--ink-2);margin-top:7px}
+.ac .pills{margin-top:11px}
+.lex{background:#fff;border-radius:12px;box-shadow:var(--sh);padding:15px}
+.lex b{font-size:14px;display:block}
+.lex p{font-size:12.5px;color:var(--ink-2);margin-top:5px}
+@media (max-width:1140px){.actgrid{grid-template-columns:repeat(2,1fr)}.sgd-g,.sgd-f{grid-template-columns:1fr}}
+@media (max-width:820px){.actgrid{grid-template-columns:1fr}}
+@media print{
+  .actgrid{grid-template-columns:repeat(3,1fr)!important}
+  .ac,.sd,.lex{break-inside:avoid;box-shadow:none;border:1px solid #DDD}
+  .partband{background:#EDEBF7!important;color:#000!important;break-inside:avoid}
+  .partband em,.partband span{color:#333!important;background:#fff!important}
+  .sgd-g{grid-template-columns:repeat(2,1fr)!important}
+}
+
 </style>
 </head>
 <body>
@@ -1076,10 +1129,44 @@ td.cp{background:#E4F3EC;color:var(--vert);font-weight:600}
 
 <!-- ═════ 06 ACTIONS ═════ -->
 <div class="panel" id="p-act"><div class="wrap">
-  <div class="zhead"><div><h2>Cinq axes pour construire l'autorité</h2>
-    <p class="desc">Du quick win au chantier de fond. L'horizon indiqué est celui de l'impact sur l'autorité, pas celui de la mise en place.</p></div></div>
+  <div class="zhead"><div><h2>Le plan d'actions</h2>
+    <p class="desc">Trente actions, réparties en cinq axes et trois horizons d'impact. Chaque action indique les signaux d'autorité qu'elle fait progresser.</p></div>
+    <div class="prog"><div class="dial" id="dial"><span id="dialV">30</span></div>
+      <div><div class="k">Sélection</div><div class="v" id="progV">30 actions</div></div></div>
+  </div>
   <div class="cascn" id="axCle"></div>
-  <div style="margin-top:14px" id="axGrid"></div>
+
+  <div class="zone">
+    <div class="zhead"><div><h2>Les cinq axes</h2>
+      <p class="desc">Chaque axe part d'un signal faible du diagnostic. Cliquez un axe pour ne voir que ses actions.</p></div></div>
+    <div class="fscroll"><table class="ftbl auto" id="axTbl"></table></div>
+  </div>
+
+  <div class="zone">
+    <div class="zhead"><div><h2>Les trente actions</h2>
+      <p class="desc">Filtrez par axe, par horizon d'impact ou par signal travaillé.</p></div>
+      <span class="fcount" id="actCount"></span></div>
+    <div class="filters" id="actF">
+      <button data-f="all" aria-pressed="true">Les 30 actions</button>
+      <button data-f="h:qw" aria-pressed="false">Quick win</button>
+      <button data-f="h:mt" aria-pressed="false">Moyen terme</button>
+      <button data-f="h:lt" aria-pressed="false">Long terme</button>
+      <button data-f="s:Profondeur" aria-pressed="false">Profondeur</button>
+      <button data-f="s:Stabilité" aria-pressed="false">Stabilité</button>
+      <button data-f="s:Consistance" aria-pressed="false">Consistance</button>
+      <button data-f="s:Corroboration" aria-pressed="false">Corroboration</button>
+      <button data-f="s:Circulation" aria-pressed="false">Circulation</button>
+      <button data-f="s:Légitimité" aria-pressed="false">Légitimité</button>
+    </div>
+    <div class="actgrid" style="margin-top:14px" id="actGrid"></div>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:14px" id="actNote"></p>
+  </div>
+
+  <div class="zone">
+    <div class="zhead"><div><h2>Le détail des cinq axes</h2>
+      <p class="desc">Pour chacun : le constat chiffré qui le justifie, les signaux travaillés et ce qu'il change.</p></div></div>
+    <div id="axGrid"></div>
+  </div>
 
   <div class="zone">
     <div class="zhead"><div><h2>Par où commencer</h2>
@@ -1097,67 +1184,81 @@ td.cp{background:#E4F3EC;color:var(--vert);font-weight:600}
   <div class="wrap">
     <div class="notewrap">
       <aside class="notenav">
-        <span class="lbl">La méthode</span>
-        <a href="#m1">Ce que mesure le diagnostic</a>
-        <a href="#m2">Le protocole de mesure</a>
-        <a href="#m3" class="lev">Les six moteurs et leurs poids</a>
-        <a href="#m4">D'où vient chaque donnée</a>
-        <a href="#m5">Le calcul, étape par étape</a>
-        <a href="#m6" class="lev">La calculette</a>
-        <a href="#m7">Les quatre paramètres figés</a>
-        <a href="#m8" class="lev">Pourquoi 85 / 15</a>
-        <a href="#m9">Les six signaux</a>
-        <a href="#m10" class="lev">La correction à la main</a>
-        <a href="#m11">Ce que nous ne sortons jamais</a>
-        <a href="#m12">Les paliers</a>
-        <a href="#m13">Les réserves de lecture</a>
-        <a href="#m14">Ce que la méthode ne dit pas</a>
+        <span class="lbl">01 · Le sourcing</span>
+        <a href="#s1">Ce que change l'IA générative</a>
+        <a href="#s2" class="lev">Le changement de jeu</a>
+        <a href="#s3">Le cadrage stratégique</a>
+        <a href="#s4">Le persona conversationnel</a>
+        <a href="#s5">Le protocole d'interrogation</a>
+        <a href="#s6" class="lev">Les six moteurs et leurs poids</a>
+        <a href="#s7">D'où vient chaque donnée</a>
+        <span class="lbl" style="margin-top:14px">02 · L'analyse</span>
+        <a href="#a1">Deux niveaux de lecture</a>
+        <a href="#a2">Les six signaux, un par un</a>
+        <a href="#a3" class="lev">Les confusions à éviter</a>
+        <a href="#a4">Ce que l'on analyse ensuite</a>
+        <span class="lbl" style="margin-top:14px">03 · Le calcul</span>
+        <a href="#c1">Le calcul, étape par étape</a>
+        <a href="#c2" class="lev">La calculette</a>
+        <a href="#c3">Les quatre paramètres figés</a>
+        <a href="#c4" class="lev">Pourquoi 85 / 15</a>
+        <a href="#c5">La correction à la main</a>
+        <a href="#c6">Ce que nous ne sortons jamais</a>
+        <a href="#c7">Les paliers</a>
+        <a href="#c8">Les réserves de lecture</a>
+        <a href="#c9">Ce que la méthode ne dit pas</a>
+        <a href="#c10">Lexique</a>
       </aside>
 
       <div class="notebody">
         <div class="notehero">
-          <div class="k">Authority Builders · méthode de calcul</div>
-          <h2>Comment le score de La Poste Pro est calculé</h2>
-          <p class="sub" style="font-size:16px;color:var(--ink-2);margin-top:14px;max-width:72ch">Toutes les règles de calcul sont posées avant la mesure et ne bougent pas d'une marque à l'autre. Cette page donne la formule complète, la donnée qui entre dans chaque terme, les pondérations retenues et la raison de chacune. Chaque étape est illustrée par les chiffres réels de La Poste Pro, et la calculette permet de les refaire.</p>
-          <div class="meta" style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:16px">Méthode verrouillée · score La Poste Pro 52 / 100 · témoin de calibration ADIM 22 / 100</div>
+          <div class="k">Authority Builders · méthode complète</div>
+          <h2>Comment ce diagnostic a été produit, analysé et calculé</h2>
+          <p class="sub" style="font-size:16px;color:var(--ink-2);margin-top:14px;max-width:72ch">Trois opérations distinctes, qu'il ne faut pas confondre. Le <b>sourcing</b> produit la donnée : qui l'on interroge, comment, et avec quelles questions. L'<b>analyse</b> lit cette donnée : ce que mesure chaque indicateur et ce qu'il ne mesure pas. Le <b>calcul</b> la transforme en une note de tête : avec quelles pondérations, et pourquoi celles là.</p>
+          <div class="meta" style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:16px">La Poste Pro 52 / 100 · palier Établie · témoin de calibration ADIM 22 / 100</div>
         </div>
 
-        <h3 id="m1">Ce que mesure le diagnostic</h3>
-        <p>Une IA générative ne classe pas des liens, elle choisit qui croire. Elle reformule la question en sous recherches, lit des pages, retient les sources qu'elle juge fiables et cohérentes entre elles, puis répond en citant trois ou quatre acteurs. Qui n'est pas dans la réponse n'existe pas pour celui qui la lit.</p>
-        <p>Le diagnostic mesure donc deux choses distinctes, et ne les mélange jamais.</p>
-        <div class="grid g2" style="margin-top:16px">
-          <div class="card">
-            <span class="lbl">Niveau 1 · la présence</span>
-            <h4 style="font-size:17px;margin-top:9px">La marque apparaît-elle ?</h4>
-            <p style="font-size:13px;color:var(--ink-2);margin-top:8px">Trois états observables, comptés réponse par réponse. <b>Citée</b> : un lien vers le domaine officiel apparaît, le modèle s'est appuyé sur la marque comme source. <b>Mention simple</b> : la marque est nommée, sans lien. <b>Absente</b> : ni l'un ni l'autre. S'y ajoute le sentiment, la tonalité du propos.</p>
-          </div>
-          <div class="card" style="background:linear-gradient(160deg,#FFF,#F7F3FD)">
-            <span class="lbl">Niveau 2 · la qualité</span>
-            <h4 style="font-size:17px;margin-top:9px">Pourquoi ferait-elle autorité ?</h4>
-            <p style="font-size:13px;color:var(--ink-2);margin-top:8px">Six signaux notés sur 100, plus le sentiment. Trois dépendent de ce que la marque produit, trois dépendent de ce que les tiers en font. Aucune action ne fait monter les deux familles à la fois, et c'est pourquoi les confondre produit des plans d'action inopérants.</p>
-          </div>
-        </div>
-        <p>Le score d'autorité est le composite de ces deux niveaux. Il n'est pas une moyenne de notes : la présence y pèse trois fois plus que la qualité, pour une raison détaillée plus bas.</p>
+        <div class="partband"><span>Partie 01</span><b>Le sourcing des insights</b><em>D'où vient la donnée, et comment elle est produite</em></div>
 
-        <h3 id="m2">Le protocole de mesure</h3>
-        <p>La donnée source est un corpus de conversations réelles, générées sur les six moteurs du panel à partir d'un jeu de questions fixe. Ce jeu est posé avant la mesure et sera rejoué à l'identique au trimestre suivant : c'est ce qui rend la progression lisible.</p>
-        <div class="fscroll"><table class="ftbl"><tr><th>Brique du protocole</th><th>Ce qui a été posé pour La Poste Pro</th><th>Pourquoi</th></tr>
+        <h3 id="s1">Ce que change l'IA générative</h3>
+        <p>En vingt quatre mois, l'IA générative est devenue un réflexe de masse. Quand un créateur d'entreprise, un commerçant ou une profession libérale s'informe, il interroge une IA avant même d'arriver sur un site de marque.</p>
+        <div class="grid g3" style="margin-top:14px" id="ctx"></div>
+        <div class="cascn" style="margin-top:12px"><b>Le constat.</b> <span id="ctxCle"></span></div>
+
+        <h4 id="s2">Le changement de jeu</h4>
+        <p>L'IA générative s'interpose entre la marque et ses audiences, en trois temps.</p>
+        <div class="grid g3" style="margin-top:14px" id="jeu"></div>
+        <div class="cascn" style="margin-top:12px"><b>Ce qui change.</b> <span id="jeuCle"></span></div>
+        <p>C'est la raison d'être du diagnostic : mesurer, non pas la visibilité, mais l'autorité, c'est à dire la confiance que le modèle accorde à un discours et à ses relais.</p>
+        <div class="grid g3" style="margin-top:14px" id="pourq"></div>
+
+        <h3 id="s3">Le cadrage stratégique, avant toute mesure</h3>
+        <p>Avant d'interroger quoi que ce soit, le périmètre du diagnostic est posé : les territoires de la marque, ses concurrents, ses sources. Rien n'est générique, tout vient de la marque et de son marché.</p>
+        <div id="cadrage"></div>
+
+        <h3 id="s4">Le persona conversationnel</h3>
+        <p>Le diagnostic ne part pas d'un mot clé : il part d'une personne réelle, en situation, qui parle à une IA. Chaque persona est construit sur sept dimensions, puis génère ses propres prompts.</p>
+        <div class="grid g4" style="margin-top:14px" id="persdim"></div>
+        <div class="cascn" style="margin-top:12px" id="persCle"></div>
+        <p>Pour La Poste Pro, trois personas conversationnels ont été construits : Isaure créatrice d'entreprise, Manuel garagiste indépendant, Sarah avocate. Leur fiche complète figure dans l'onglet Personas.</p>
+
+        <h3 id="s5">Le protocole d'interrogation</h3>
+        <p>Chaque persona déroule ensuite un parcours de décision réaliste, en cinq temps, reproduisant une conversation naturelle plutôt qu'une requête de laboratoire.</p>
+        <div class="card" style="margin-top:14px"><div id="parcours2"></div></div>
+        <div class="fscroll" style="margin-top:14px"><table class="ftbl"><tr><th>Brique du protocole</th><th>Ce qui a été posé pour La Poste Pro</th><th>Pourquoi</th></tr>
           <tr><td>Questions de départ</td><td>60 questions, réparties entre trois personas et six territoires, pour 359 conversations analysées</td><td>Une question changée d'un trimestre à l'autre rendrait toute comparaison impossible</td></tr>
-          <tr><td>Publics</td><td>Isaure créatrice, Manuel garagiste, Sarah avocate : des personas conversationnels, avec leur vocabulaire et leurs critères</td><td>Les modèles répondent à des situations, pas à des mots clés. La fidélité du persona fait la validité du diagnostic</td></tr>
-          <tr><td>Territoires</td><td>Six territoires d'autorité issus de la marque elle même, pas d'une liste générique</td><td>L'autorité se mesure terrain par terrain, jamais en global abstrait</td></tr>
-          <tr><td>Concurrents</td><td>Neuf acteurs posés au cadrage, du généraliste colis au spécialiste de la signature</td><td>Le benchmark doit refléter les acteurs réellement cités face à la marque</td></tr>
           <tr><td>Spontané et sollicité</td><td>30 prompts nomment la marque, 30 ne la nomment pas</td><td>Choix de <b>mesure</b> : il faut assez de réponses où la marque est présente pour pouvoir noter les six signaux. Ce n'est pas un poids de score</td></tr>
           <tr><td>Langue et localisation</td><td>Français, France</td><td>Les réponses varient fortement selon la localisation du compte interrogé</td></tr>
-          <tr><td>Parcours de décision</td><td>Cinq temps : cadrage du besoin, paysage des acteurs, comparaison, preuve sociale, verdict</td><td>Une marque peut être absente du cadrage et présente au verdict, ou l'inverse : le parcours le révèle</td></tr>
+          <tr><td>Taggage des réponses</td><td>Par parité quand le run est alterné, sinon par le nom lu dans le prompt de départ</td><td>Le tag décide dans quel sous ensemble tombe la réponse ; le garde fou est de retomber sur l'équilibre attendu du protocole</td></tr>
         </table></div>
 
-        <h4 id="m3">Les six moteurs ne pèsent pas pareil</h4>
+        <h4 id="s6">Les six moteurs ne pèsent pas pareil</h4>
         <p>Un signal capté par le moteur dominant ne vaut pas un signal capté par un moteur de niche. Les six moteurs sont donc pondérés par leur poids d'audience réel, et non traités à égalité. Sans cette pondération, un bon score sur un moteur marginal masquerait une absence sur le moteur que tout le monde utilise.</p>
         <div class="card" style="margin-top:14px"><div id="engines"></div>
-          <p style="font-size:12.5px;color:var(--muted);margin-top:14px">Ces poids interviennent à un seul endroit du calcul : l'agrégation des six signaux et du sentiment sur les réponses où la marque est présente, à l'étape 2. La présence, elle, se compte réponse par réponse.</p></div>
+          <p style="font-size:12.5px;color:var(--muted);margin-top:14px">Ces poids interviennent à un seul endroit du calcul : l'agrégation des six signaux et du sentiment sur les réponses où la marque est présente. La présence, elle, se compte réponse par réponse.</p></div>
 
-        <h3 id="m4">D'où vient chaque donnée</h3>
-        <p>Deux régimes, strictement séparés. Ce qui est objectif sort de l'export d'audit sans intervention. Ce que les modèles surévaluent systématiquement est vérifié à la main sur l'observable, avec une grille de notation. La correction à la main mord sur la note de tête, et c'est volontaire.</p>
+        <h3 id="s7">D'où vient chaque donnée</h3>
+        <p>Deux régimes, strictement séparés. Ce qui est objectif sort de l'export d'audit sans intervention. Ce que les modèles surévaluent systématiquement est vérifié à la main sur l'observable, avec une grille de notation.</p>
         <div class="fscroll"><table class="ftbl"><tr><th>Donnée</th><th>Source</th><th>Régime</th><th>Pourquoi</th></tr>
           <tr><td>Citée, mention, absente</td><td>Export d'audit, réponse par réponse</td><td class="mono">Automatique</td><td>État factuel, vérifiable dans le texte de la réponse</td></tr>
           <tr><td>Corroboration 70, Circulation 65, Légitimité 69</td><td>Export d'audit, sur les réponses présentes, puis rebasées sur le total</td><td class="mono">Automatique</td><td>L'absence de la marque dans une réponse <b>est</b> une non ratification réelle : personne ne la reprend là. Rien à corriger</td></tr>
@@ -1166,14 +1267,62 @@ td.cp{background:#E4F3EC;color:var(--vert);font-weight:600}
           <tr><td>Sources, concurrents, territoires</td><td>Export d'audit : 6 597 sources, domaines et noms extraits des réponses</td><td class="mono">Automatique</td><td>Comptage brut, dédoublonné sur les variantes de graphie</td></tr>
         </table></div>
 
-        <h3 id="m5">Le calcul, étape par étape</h3>
+        <div class="partband an"><span>Partie 02</span><b>L'analyse</b><em>Ce que la donnée dit, et ce qu'elle ne dit pas</em></div>
+
+        <h3 id="a1">Deux niveaux de lecture</h3>
+        <p>Le diagnostic lit la donnée à deux niveaux, et ne les mélange jamais. Le premier dit si la marque est là. Le second dit pourquoi elle ferait autorité.</p>
+        <div class="grid g2" style="margin-top:14px">
+          <div class="card"><span class="lbl">Niveau 1 · la présence</span>
+            <h4 style="font-size:17px;margin-top:9px">La marque apparaît-elle ?</h4>
+            <div id="n1"></div>
+            <p style="font-size:12.5px;color:var(--muted);margin-top:12px">Nécessaire, mais insuffisant : c'est le niveau que mesurent la plupart des outils de visibilité IA.</p></div>
+          <div class="card" style="background:linear-gradient(160deg,#FFF,#F7F3FD)"><span class="lbl">Niveau 2 · l'autorité</span>
+            <h4 style="font-size:17px;margin-top:9px">Pourquoi ferait-elle autorité ?</h4>
+            <p style="font-size:13px;color:var(--ink-2);margin-top:8px">Six signaux observables, notés sur 100, qui expliquent la mention et la citation. Trois dépendent de ce que la marque produit et contrôle, trois dépendent de ce que les tiers en font. <b>Aucune action ne fait progresser les deux familles à la fois</b>, et c'est pourquoi les confondre conduit à des plans d'action inopérants.</p>
+            <div class="docs" style="margin-top:14px">
+              <span class="doc" style="background:#E6F5F9;color:#15748A">Consistance</span>
+              <span class="doc" style="background:#E6F5F9;color:#15748A">Profondeur</span>
+              <span class="doc" style="background:#E6F5F9;color:#15748A">Stabilité</span>
+              <span class="doc" style="background:#FBE7F0;color:#B33A62">Corroboration</span>
+              <span class="doc" style="background:#FBE7F0;color:#B33A62">Circulation</span>
+              <span class="doc" style="background:#FBE7F0;color:#B33A62">Légitimité</span>
+            </div></div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <span class="lbl">La règle d'affichage, verrouillée</span>
+          <p style="font-size:13px;color:var(--ink-2);margin-top:10px"><b>Signaux internes : affichés à présence.</b> La valeur est celle mesurée là où la marque apparaît, sans rebasage. L'absence ne dit rien sur la qualité du corpus ; un zéro signifierait à tort que le corpus est mauvais. <b>Signaux d'écosystème : rebasés sur le marché.</b> La valeur est ramenée sur le total, les absences comptant zéro, parce qu'être absent d'une réponse est une non ratification réelle.</p>
+          <div class="bar6" style="margin-top:14px">
+            <span style="background:#2C7E60">Excellent · 81 à 100</span>
+            <span style="background:#5E9E4A">Bon · 61 à 80</span>
+            <span style="background:#C77924">Moyen · 41 à 60</span>
+            <span style="background:#C9573B">Faible · 21 à 40</span>
+            <span style="background:#C93B36">Absent · 0 à 20</span>
+          </div>
+        </div>
+
+        <h3 id="a2">Les six signaux, un par un</h3>
+        <p>Pour chacun : ce qu'il mesure exactement, ce qui le fait monter, ce qui le fait baisser, comment il s'observe, et la valeur relevée sur La Poste Pro.</p>
+        <div id="sigdet"></div>
+
+        <h4 id="a3">Les confusions à éviter</h4>
+        <p>Quatre paires que l'on mélange souvent, et qui conduisent à travailler le mauvais levier.</p>
+        <div class="fscroll" style="margin-top:14px"><table class="ftbl" id="paires"></table></div>
+        <div class="cascn" style="margin-top:12px"><b>Conséquence pour la recommandation.</b> Un signal interne bas se lit « corpus mince, discontinu ou contradictoire » et appelle à construire, étoffer, aligner. Un signal d'écosystème bas se lit « personne ne reprend la marque » et appelle à faire corroborer, circuler, incarner. Jamais « il faut être plus cité » : la citation est le résultat, pas le levier.</div>
+
+        <h3 id="a4">Ce que l'on analyse ensuite</h3>
+        <p>Au delà des six signaux, cinq lectures complètent le diagnostic. Chacune répond à une question que le score seul ne tranche pas.</p>
+        <div class="fscroll"><table class="ftbl" id="analyse"></table></div>
+
+        <div class="partband ca"><span>Partie 03</span><b>Le calcul</b><em>Comment la donnée devient une note de tête</em></div>
+
+        <h3 id="c1">Le calcul, étape par étape</h3>
         <p>Cinq étapes, appliquées à l'identique sur tous les diagnostics. Les exemples chiffrés sont ceux de La Poste Pro, et ils se vérifient : le score de 52 se reconstruit entièrement à partir des cinq termes mesurés.</p>
         <div class="card" id="steps" style="margin-top:14px"></div>
         <div class="noteget" style="background:#EAF6F0">
           <p><b>Le contrôle.</b> Présence pondérée 50,8 et qualité rebasée 43,9 donnent un spontané à 49,1. Présence pondérée 70 et qualité rebasée 54,3 donnent un sollicité à 66,1. Pondérés 85 et 15, ils donnent 51,6, soit <b>52 sur 100</b>, palier Établie : exactement le score affiché dans le diagnostic. Aucun terme n'est ajusté après coup.</p>
         </div>
 
-        <h4 id="m6">La calculette</h4>
+        <h4 id="c2">La calculette</h4>
         <p>Les entrées de chaque sous ensemble sont modifiables : le calcul se refait en direct, dans l'ordre exact des cinq étapes. Deux jeux de valeurs sont fournis : celui de La Poste Pro, et celui du témoin de calibration ADIM, qui doit toujours ressortir à 22 et qui fixe l'échelle pour toutes les marques mesurées.</p>
         <div class="filters" id="presets" style="margin-top:12px">
           <button data-k="lpp" aria-pressed="true">Valeurs La Poste Pro</button>
@@ -1198,51 +1347,25 @@ td.cp{background:#E4F3EC;color:var(--vert);font-weight:600}
           </div>
         </div>
         <div class="glob">
-          <div>
-            <div class="ttl">Score global, la note de tête</div>
-            <div class="fx" id="globFx"></div>
-          </div>
-          <div>
-            <div class="big" id="globV">0<i>/100</i></div>
-            <div class="pal"><span id="globP">—</span></div>
-          </div>
+          <div><div class="ttl">Score global, la note de tête</div><div class="fx" id="globFx"></div></div>
+          <div><div class="big" id="globV">0<i>/100</i></div><div class="pal"><span id="globP">—</span></div></div>
         </div>
         <div class="alt" id="altW"></div>
 
-        <h3 id="m7">Les quatre paramètres figés</h3>
+        <h3 id="c3">Les quatre paramètres figés</h3>
         <p>Quatre choix, et quatre seulement, déterminent le chiffre. Ils sont posés une fois pour toutes les marques mesurées : c'est ce qui autorise la comparaison entre deux diagnostics, et ce qui interdit d'ajuster un score marque par marque.</p>
         <div class="lock" style="margin-top:14px" id="locks"></div>
 
-        <h4 id="m8">Pourquoi 85 sur le spontané et 15 sur le sollicité</h4>
+        <h4 id="c4">Pourquoi 85 sur le spontané et 15 sur le sollicité</h4>
         <p>Toutes les marques sont présentes à peu près partout quand on les nomme : le sollicité est une quasi constante, il ne discrimine rien. La Poste Pro y est citée dans 100 % des réponses, avec un lien vers son domaine. Le spontané, lui, mesure la seule chose qui décide d'une shortlist : la marque émerge-t-elle sans qu'on l'invite.</p>
-        <p>Pondérer le sollicité plus haut écraserait mécaniquement le benchmark : des marques très inégales en spontané finiraient dans le même palier. La calculette le montre en direct, sur les chiffres de La Poste Pro comme sur ceux du témoin.</p>
-        <p><b>85 % est un plancher, pas un curseur.</b> Le partage moitié moitié des questions du protocole est un choix de mesure, pas un poids de score : les deux ne doivent jamais être confondus.</p>
+        <p>Pondérer le sollicité plus haut écraserait mécaniquement le benchmark : des marques très inégales en spontané finiraient dans le même palier. La calculette le montre en direct, sur les chiffres de La Poste Pro comme sur ceux du témoin. <b>85 % est un plancher, pas un curseur.</b> Le partage moitié moitié des questions du protocole est un choix de mesure, pas un poids de score.</p>
 
-        <h3 id="m9">Les six signaux</h3>
-        <p>Deux familles, de natures différentes, qui n'appellent pas les mêmes actions.</p>
-        <div class="sfam" style="margin-top:14px" id="sfam"></div>
-        <div class="card" style="margin-top:14px">
-          <span class="lbl">Barème de lecture, identique pour les six</span>
-          <div class="bar6" style="margin-top:10px">
-            <span style="background:#2C7E60">Excellent · 81 à 100</span>
-            <span style="background:#5E9E4A">Bon · 61 à 80</span>
-            <span style="background:#C77924">Moyen · 41 à 60</span>
-            <span style="background:#C9573B">Faible · 21 à 40</span>
-            <span style="background:#C93B36">Absent · 0 à 20</span>
-          </div>
-          <p style="font-size:12.5px;color:var(--ink-2);margin-top:14px">Conséquence directe pour la recommandation : un signal <b>interne</b> bas se lit « corpus mince, discontinu ou contradictoire » et appelle à construire, étoffer, aligner. Un signal <b>écosystème</b> bas se lit « personne ne reprend la marque » et appelle à faire corroborer, circuler, incarner. Jamais « il faut être plus cité » : la citation est le résultat, pas le levier. Sur La Poste Pro, les deux signaux à traiter en premier sont internes : Profondeur à 15 et Stabilité à 29.</p>
-        </div>
-        <div class="card" style="margin-top:14px">
-          <span class="lbl">Deux objets à ne pas confondre</span>
-          <p style="font-size:13px;color:var(--ink-2);margin-top:10px">La <b>qualité du score</b>, à l'étape 2, rebase uniformément les six signaux et le sentiment pour produire un chiffre : 51,3 en spontané pour La Poste Pro. L'<b>affichage des six signaux</b> est une grille de lecture : internes à présence, écosystème rebasés. Elle explique où est le déficit, elle ne change pas le score.</p>
-        </div>
-
-        <h4 id="m10">La correction à la main des trois signaux internes</h4>
-        <p>On ne demande pas une note au client et on ne prend pas la note du modèle : on recueille des faits observables, puis on note soi même avec la grille. La note devient objective et reproductible par quelqu'un d'autre. La vérification se fait sur le site et sur le réseau principal de la marque.</p>
+        <h4 id="c5">La correction à la main des trois signaux internes</h4>
+        <p>On ne demande pas une note au client et on ne prend pas la note du modèle : on recueille des faits observables, puis on note soi même avec la grille. La note devient objective et reproductible par quelqu'un d'autre.</p>
         <div id="grids"></div>
         <p>Une fois les trois internes corrigés, la qualité présente est recalculée avec les valeurs corrigées, puis le global est recomposé en 85 sur 15. C'est la dernière opération avant la note de tête.</p>
 
-        <h3 id="m11">Ce que nous ne sortons jamais</h3>
+        <h3 id="c6">Ce que nous ne sortons jamais</h3>
         <div class="bias">
           <h3>Le chiffre de l'outil n'est pas le score d'autorité</h3>
           <p>Les outils de mesure sortent une note calculée uniquement là où la marque a réussi à apparaître : ils notent les réussites et jettent les absences. Sur le témoin de calibration, cette note monte à 62 ou 69 selon la variante, quand le score réel est de 22. Trois fois l'écart, et deux paliers de différence.</p>
@@ -1254,7 +1377,7 @@ td.cp{background:#E4F3EC;color:var(--vert);font-weight:600}
           <p style="margin-top:18px">Sur La Poste Pro, le même écart existe à plus petite échelle : la qualité du discours est de 51,3 là où la marque apparaît, mais la qualité rebasée tombe à 43,9 une fois les absences comptées. Le score décrit la réalité commerciale, pas la performance dans les seules réponses gagnées.</p>
         </div>
 
-        <h3 id="m12">Les quatre paliers</h3>
+        <h3 id="c7">Les quatre paliers</h3>
         <p>Le palier compte davantage que le point : il dit la nature du travail à mener, pas seulement son ampleur. La Poste Pro entre dans le palier Établie, deux points au dessus de son seuil.</p>
         <div class="fscroll"><table class="ftbl"><tr><th>Palier</th><th>Plage</th><th>Ce que cela signifie</th><th>Ce qui fait monter</th></tr>
           <tr><td>Émergente</td><td class="mono">0 à 25</td><td>La marque n'apparaît presque jamais sans être nommée. Son existence dans les modèles est fragmentaire.</td><td>Exister : un corpus propre, structuré, daté, et des premiers relais tiers</td></tr>
@@ -1263,11 +1386,11 @@ td.cp{background:#E4F3EC;color:var(--vert);font-weight:600}
           <tr><td>Référence</td><td class="mono">75 à 100</td><td>Elle est la source que les modèles citent avant les autres sur ses territoires.</td><td>Entretenir : la position se perd aussi vite qu'elle se gagne</td></tr>
         </table></div>
 
-        <h3 id="m13">Les réserves de lecture</h3>
+        <h3 id="c8">Les réserves de lecture</h3>
         <p>Trois écarts internes au diagnostic, à trancher avant toute diffusion externe. Ils ne changent pas le score, qui se reconstruit exactement à partir des termes du détail, mais ils changent le chiffre que l'on met en avant.</p>
         <div class="grid g3" style="margin-top:14px" id="reserves"></div>
 
-        <h3 id="m14">Ce que la méthode ne dit pas</h3>
+        <h3 id="c9">Ce que la méthode ne dit pas</h3>
         <div class="grid g2" style="margin-top:14px">
           <div class="card"><span class="lbl">Limite 1</span><h4 style="font-size:16px;margin-top:8px">Ce n'est pas une mesure d'audience</h4>
             <p style="font-size:13px;color:var(--ink-2);margin-top:8px">Le diagnostic mesure ce que les modèles répondent, pas combien de personnes ont posé la question. Il dit la place de la marque dans la réponse, pas le volume de trafic qui en découle.</p></div>
@@ -1278,6 +1401,10 @@ td.cp{background:#E4F3EC;color:var(--vert);font-weight:600}
           <div class="card"><span class="lbl">Limite 4</span><h4 style="font-size:16px;margin-top:8px">Les signaux internes restent une appréciation</h4>
             <p style="font-size:13px;color:var(--ink-2);margin-top:8px">La grille rend la notation reproductible, elle ne la rend pas automatique. Chaque note interne est adossée à des faits observables, rappelés ici pour qu'ils puissent être contestés.</p></div>
         </div>
+
+        <h3 id="c10">Lexique</h3>
+        <p>Les termes employés tout au long du diagnostic.</p>
+        <div class="grid g2" style="margin-top:14px" id="lex"></div>
 
         <div class="noteget">
           <p><b>Gouvernance de l'échelle.</b> Les quatre paramètres ne se rediscutent pas marque par marque. Si la distribution des scores se révélait trop tassée sur un portefeuille, l'ajustement se ferait une seule fois, sur l'ensemble, et le témoin de calibration devrait toujours ressortir à 22.</p>
@@ -1465,6 +1592,142 @@ const RESERVES=[
  ["Présence spontanée : 87 % ou 85,6 %","La synthèse affiche 87 % de présence spontanée ; la cartographie concurrentielle et le détail donnent 85,6 %, soit 154 mentions sur 180 réponses spontanées. Le calcul du score retient 85,6 %."],
  ["Citation pleine : 41 % ou 62,8 %","La synthèse affiche 41 % de citations complètes sur 154 mentions ; le détail donne 62,8 % de citations pleines sur l'ensemble des réponses spontanées. Les deux portent sur des bases différentes, une seule doit être affichée au client."],
  ["Présence totale à 50,8 %","Ce chiffre du détail est la présence pondérée, citations à 0,7 et mentions à 0,3, et non la présence brute, qui est de 85,6 %. L'intitulé du deck est à corriger."]];
+
+/* ═══ LA POSTE PRO · plan d'actions détaillé et contenu de méthode ═══ */
+
+/* Les 30 actions : chaque action est une tâche du diagnostic, rattachée à son axe,
+   à son horizon d'impact et aux signaux qu'elle fait progresser. */
+const ACTS=[
+ {k:"A1",ax:1,h:"qw",t:"Ouvrir un espace de marque propre",txt:"Ouvrir un espace de marque propre et orienter LinkedIn vers du fond daté, plutôt que vers de l'actualité.",sig:["Profondeur","Stabilité"]},
+ {k:"A2",ax:1,h:"qw",t:"Redater et rafraîchir les pages clés",txt:"Redater et rafraîchir les pages projets clés, pour que les modèles puissent situer le contenu dans le temps.",sig:["Stabilité"]},
+ {k:"A3",ax:1,h:"mt",t:"Structurer Mon Mag Pro par persona",txt:"Structurer Mon Mag Pro par persona, créateur, commerçant et indépendant, avec des entrées dédiées.",sig:["Profondeur"]},
+ {k:"A4",ax:1,h:"mt",t:"Comparatifs et FAQ longue traîne",txt:"Produire des contenus comparatifs et des FAQ longue traîne sur les cinq sous territoires.",sig:["Profondeur","Consistance"]},
+ {k:"A5",ax:1,h:"lt",t:"Un corpus evergreen par territoire",txt:"Constituer un corpus evergreen daté et mis à jour annuellement pour chaque territoire clé.",sig:["Profondeur","Stabilité"]},
+ {k:"A6",ax:1,h:"lt",t:"Documenter les offres Docaposte pour les pros",txt:"Documenter les offres Docaposte accessibles aux pros, avec tunnel self service et tarif explicite.",sig:["Profondeur"]},
+
+ {k:"A7",ax:2,h:"qw",t:"Cartographier dix médias et syndicats pros",txt:"Identifier les dix médias et syndicats professionnels qui traitent les sujets d'envoi et de confiance numérique.",sig:["Corroboration"]},
+ {k:"A8",ax:2,h:"qw",t:"Tribunes et données exclusives à trois médias",txt:"Proposer des tribunes ou des données exclusives à trois médias ciblés, dès le trimestre suivant.",sig:["Légitimité","Corroboration"]},
+ {k:"A9",ax:2,h:"mt",t:"Un baromètre annuel daté",txt:"Produire un baromètre annuel daté sur les pratiques d'envoi des petits pros en France.",sig:["Légitimité","Corroboration"]},
+ {k:"A10",ax:2,h:"mt",t:"Alimenter les bases de connaissances des modèles",txt:"Alimenter les bases de connaissances des modèles avec des contenus structurés : FAQ, schémas, chiffres datés.",sig:["Profondeur","Circulation"]},
+ {k:"A11",ax:2,h:"lt",t:"Être cité par les institutions",txt:"Devenir l'interlocuteur officiel cité par les institutions, URSSAF et CCI, sur la dématérialisation.",sig:["Légitimité","Corroboration"]},
+ {k:"A12",ax:2,h:"lt",t:"Co-publier avec les fédérations",txt:"Construire un programme de co-publication avec les fédérations artisanales et commerçantes.",sig:["Corroboration"]},
+
+ {k:"A13",ax:3,h:"qw",t:"Mapper vingt requêtes génériques",txt:"Mapper les vingt requêtes génériques sans marque sur lesquelles La Poste Pro n'est pas en position 1.",sig:["Circulation"]},
+ {k:"A14",ax:3,h:"qw",t:"Optimiser les entrées de pages",txt:"Optimiser les balises et les entrées de pages pour les requêtes du type « envoyer un recommandé en ligne ».",sig:["Consistance","Circulation"]},
+ {k:"A15",ax:3,h:"mt",t:"Des landing pages par cas d'usage",txt:"Créer des landing pages dédiées par cas d'usage spontané : colis retour, recommandé urgent, dépôt proche.",sig:["Circulation","Profondeur"]},
+ {k:"A16",ax:3,h:"mt",t:"Formats courts sur mobile",txt:"Tester des formats courts, vidéo et reels, pour les requêtes à intention immédiate sur mobile.",sig:["Circulation"]},
+ {k:"A17",ax:3,h:"lt",t:"Suivi mensuel des positions",txt:"Automatiser le suivi mensuel des positions sur les requêtes génériques pro.",sig:["Circulation"]},
+ {k:"A18",ax:3,h:"lt",t:"Étendre la couverture sémantique",txt:"Étendre la couverture sémantique aux requêtes émergentes liées à la confiance numérique.",sig:["Consistance","Profondeur"]},
+
+ {k:"A19",ax:4,h:"qw",t:"Recenser les partenaires existants",txt:"Recenser les associations, réseaux de franchisés et plateformes e-commerce déjà partenaires.",sig:["Corroboration"]},
+ {k:"A20",ax:4,h:"qw",t:"Un kit co-brandé à cinq partenaires",txt:"Proposer un kit de contenu co-brandé à cinq partenaires clés, pour diffusion immédiate.",sig:["Circulation","Corroboration"]},
+ {k:"A21",ax:4,h:"mt",t:"Témoignages clients vérifiés",txt:"Lancer un programme de témoignages clients vérifiés, nommés et datés, sur les cinq territoires gagnés.",sig:["Légitimité","Corroboration"]},
+ {k:"A22",ax:4,h:"mt",t:"Entrer dans les comparatifs de la presse pro",txt:"Obtenir des mentions dans les comparatifs de la presse spécialisée TPE et PME.",sig:["Corroboration"]},
+ {k:"A23",ax:4,h:"lt",t:"Un label partenaire visible",txt:"Construire un label ou une certification partenaire, visible sur les sites des revendeurs agréés.",sig:["Légitimité","Circulation"]},
+ {k:"A24",ax:4,h:"lt",t:"Cas clients co-publiés",txt:"Développer des cas clients co-publiés avec des plateformes e-commerce.",sig:["Corroboration","Circulation"]},
+
+ {k:"A25",ax:5,h:"qw",t:"Nommer et tarifer l'offre de signature",txt:"Confirmer l'existence d'une offre de signature électronique self service, nommée et tarifée pour les indépendants.",sig:["Consistance"]},
+ {k:"A26",ax:5,h:"qw",t:"Une page d'entrée Docaposte pour le petit pro",txt:"Créer une page d'entrée dédiée sur laposte.fr reliant Docaposte aux usages du petit pro.",sig:["Consistance","Profondeur"]},
+ {k:"A27",ax:5,h:"mt",t:"Expliquer la LRE et le coffre-fort",txt:"Lancer un contenu éditorial sur Mon Mag Pro expliquant la LRE, la signature et le coffre-fort numérique.",sig:["Profondeur"]},
+ {k:"A28",ax:5,h:"mt",t:"Relier le numérique au réseau physique",txt:"Associer le récit de confiance numérique au réseau physique : le tiers de confiance qui a aussi un bureau.",sig:["Consistance"]},
+ {k:"A29",ax:5,h:"lt",t:"L'alternative souveraine",txt:"Positionner La Poste Pro comme alternative souveraine et de proximité face aux acteurs américains.",sig:["Consistance","Légitimité"]},
+ {k:"A30",ax:5,h:"lt",t:"Experts-comptables et notaires",txt:"Développer des partenariats avec les experts-comptables et les notaires pour ancrer la légitimité juridique.",sig:["Légitimité","Corroboration"]}
+];
+const HOR={qw:["Quick win","Activable tout de suite, effet rapide sur la visibilité","#C93B36"],
+ mt:["Moyen terme","Structurer le corpus et les relais, sur quelques mois","#6E3AA8"],
+ lt:["Long terme","Construire l'autorité et le récit propre, dans la durée","#1D9FB8"]};
+const ACTNOTE="Les trente actions sont les tâches du diagnostic, réparties par axe et par horizon d'impact. L'horizon est celui de l'effet sur l'autorité, pas celui de la mise en place. Le porteur et l'indicateur de chaque action ne figurent pas dans le diagnostic : ils se posent avec l'équipe, action par action.";
+
+/* ═══ MÉTHODE · partie 1, le sourcing des insights ═══ */
+const CTX=[["900","millions d'utilisateurs actifs hebdomadaires de ChatGPT dans le monde, le double d'il y a un an.","OpenAI, février 2026"],
+ ["50","% des Américains utilisent désormais des chatbots IA, contre un sur quatre en 2023.","Pew Research, 2026"],
+ ["65","% des jeunes adultes utilisent déjà l'IA générative, aux États-Unis comme en Europe.","Pew 2026 : 66 % des 18-29 ans. Eurostat 2025 : 64 % des 16-24 ans"]];
+const CTXCLE="Les audiences se déplacent vite : le marketing devient IA first.";
+const JEU=[["L'audience interroge","Créateurs, commerçants et professions libérales posent leurs questions à ChatGPT, Gemini, Claude ou Vibe, en langage naturel, à partir de situations réelles."],
+ ["L'IA oriente","Elle ne renvoie plus dix liens : elle sélectionne, hiérarchise et résume quelques sources. La marque n'est qu'une réponse possible parmi celles jugées fiables."],
+ ["L'IA prescrit","Elle tranche en partie à la place de l'audience : recommande, écarte, rassure ou alerte. La marque citée comme référence capte la décision."]];
+const JEUCLE="L'IA est passée de l'orientation à la prescription : elle répond sans clic et sans visite. Dans ce modèle, seule l'autorité décide si la marque est citée, et elle devient le premier canal d'acquisition. Le GEO ne remplace pas le SEO, il le prolonge.";
+const POURQ=[["Être cité","L'IA ne liste plus dix liens, elle recommande quelques marques. Faire autorité, c'est être celle qu'elle cite et conseille.","la recommandation"],
+ ["Capter la décision","L'IA oriente et prescrit avant la visite du site. Faire autorité, c'est peser sur le choix au moment où il se forme.","la décision"],
+ ["Préempter le terrain","Sur ses territoires d'expertise, devenir la référence que l'IA cite avant les concurrents, et garder l'avance.","l'avance"]];
+const CADRAGE=[["Territoires d'autorité","Les sujets que la marque considère comme siens, issus de son ADN et de son brand book, sur lesquels elle veut être la référence. Six territoires pour La Poste Pro.","Pas une liste générique : les territoires viennent de la marque elle même."],
+ ["Concurrents","Les acteurs face auxquels la marque se mesure sur ces territoires. Neuf acteurs posés au cadrage, du généraliste colis au spécialiste de la signature.","Le benchmark doit refléter les acteurs réellement cités face à la marque."],
+ ["Sources et marché","Le périmètre d'analyse : marché, langue, pays, et sources stratégiques à croiser. Français, France.","Les réponses varient fortement selon la localisation du compte interrogé."]];
+const PERSDIM=[["Personnalité","âge, caractère, traits"],["Identité fonctionnelle","rôle, secteur, décision, expertise"],
+ ["Objet de la conversation","le fil rouge, dans ses mots"],["Douleur à résoudre","ce qu'il cherche à sécuriser"],
+ ["Moment de recherche","déclencheur, étapes, échéance"],["Vocabulaire spontané","mots employés et mots proscrits"],
+ ["Critères non négociables","ce qui emporte la réponse"]];
+const PERSCLE="Un persona marketing décrit qui est l'audience. Un persona conversationnel décrit comment elle interroge une IA : dans quel contexte, avec quels mots, sous quelles contraintes. C'est lui qui génère des prompts réalistes, de 15 à 30 par persona, et non des requêtes de laboratoire. La fidélité du persona fait la validité du diagnostic.";
+
+/* ═══ MÉTHODE · partie 2, l'analyse ═══ */
+const N1=[["Mention","La marque est nommée dans la réponse, avec ou sans lien. Mesure la notoriété : sait-on qu'elle existe ?"],
+ ["Citation","Un lien cliquable vers le domaine officiel apparaît. Le modèle s'est appuyé sur la marque comme source, il ne s'est pas contenté de s'en souvenir."],
+ ["Sentiment","Le ton sur lequel la marque est évoquée : positif, neutre, mitigé ou négatif."]];
+const SIGDET=[
+ {n:"Consistance",f:"int",v:50,q:"Dit-on partout la même chose ?",
+  d:"Mesure la cohérence du discours de marque sur l'ensemble des canaux qu'elle contrôle : site, réseaux, documentation, prises de parole. Un modèle qui rencontre deux versions contradictoires d'un même positionnement n'en retient aucune.",
+  up:"Un message unique, décliné sans variation de fond. Des prises de position tranchées et assumées. Un vocabulaire stable d'un support à l'autre.",
+  down:"Des formulations génériques interchangeables. Un discours qui change selon le canal. L'absence de comparatif, qui oblige le modèle à aller chercher l'arbitrage ailleurs.",
+  obs:"Comparaison entre les messages du site et ceux restitués par les six moteurs.",
+  vs:"Ne pas confondre avec la Profondeur : on peut être parfaitement cohérent et n'avoir presque rien à dire.",
+  lpp:"Ligne éditoriale présente mais corpus propriétaire encore limité."},
+ {n:"Profondeur",f:"int",v:15,q:"A-t-on assez de matière ?",
+  d:"Mesure la densité et la substance du corpus disponible sur les territoires de la marque. Pas le volume de pages, mais la quantité d'information réellement exploitable pour répondre à une question précise.",
+  up:"Des données chiffrées, des comparatifs, des méthodes explicitées, des retours d'usage documentés. Une page par sujet plutôt qu'une page pour tout.",
+  down:"Du contenu déclaratif sans preuve. Des PDF plutôt que des pages. Des sujets revendiqués mais non traités.",
+  obs:"Crawl du domaine, croisé avec la capacité des moteurs à répondre en détail sur chaque territoire.",
+  vs:"Ne pas confondre avec la Stabilité : la Profondeur est une photographie, la Stabilité un rythme.",
+  lpp:"Contenu expert peu développé sur les actifs propres. C'est le signal le plus faible du profil."},
+ {n:"Stabilité",f:"int",v:29,q:"Publie-t-on régulièrement ?",
+  d:"Mesure la continuité de la production éditoriale sur vingt quatre mois et plus. Un modèle accorde davantage de confiance à une source qui publie régulièrement qu'à une source dense mais figée.",
+  up:"Un rythme tenu, des dates visibles, un versionnement des pages, une reprise des contenus anciens plutôt que leur abandon.",
+  down:"Des à coups de production. Des pages sans date. Des contenus dépubliés ou dont l'adresse change, qui cassent les citations déjà acquises.",
+  obs:"Relevé des dates de publication et de mise à jour sur l'ensemble du domaine.",
+  vs:"C'est le signal le plus facile à conserver et le plus rapide à perdre : une refonte mal conduite l'efface en trois semaines.",
+  lpp:"Prises de parole irrégulières, faible densité de publication."},
+ {n:"Corroboration",f:"eco",v:70,q:"Qui confirme ce qu'on affirme ?",
+  d:"Mesure la validation du discours par des tiers crédibles et indépendants : presse spécialisée, institutions, études, fédérations. C'est ce qui autorise un modèle à citer une affirmation sans réserve.",
+  up:"Des reprises dans des sources reconnues. Des données produites par la marque et réutilisées par d'autres. Des contributions à des référentiels sectoriels.",
+  down:"Un discours qui ne vit que sur les canaux de la marque. Des affirmations invérifiables. Un corpus uniquement promotionnel.",
+  obs:"Analyse des sources citées par les moteurs et de leur nature, propriétaire ou tierce.",
+  vs:"Ne pas confondre avec la Circulation : être confirmé par deux sources très crédibles n'est pas être repris partout, et l'inverse est vrai aussi.",
+  lpp:"Des sources tierces confirment partiellement les positions."},
+ {n:"Circulation",f:"eco",v:65,q:"Le discours voyage-t-il ?",
+  d:"Mesure la diffusion réelle du discours au delà des canaux propres. C'est le signal qui détermine si une marque existe dans l'écosystème, ou seulement chez elle.",
+  up:"Des liens obtenus depuis des sources que les moteurs consultent déjà. Des reprises vidéo, distributeurs, prescripteurs. Des partenariats de contenu.",
+  down:"Un corpus fermé, si dense soit-il. Des contenus non réutilisables. Des formats que les tiers ne peuvent pas citer.",
+  obs:"Part des citations provenant de domaines tiers, et diversité de ces domaines.",
+  vs:"C'est le signal le plus corrélé au score global : il déplace davantage que tous les autres réunis.",
+  lpp:"Relais externes existants mais insuffisamment amplifiés."},
+ {n:"Légitimité",f:"eco",v:69,q:"Qui porte le discours ?",
+  d:"Mesure la présence d'auteurs et d'experts identifiables derrière les contenus. Un modèle distingue un propos signé par une personne dont il peut vérifier le parcours d'un propos émis par une entité abstraite.",
+  up:"Des experts nommés, avec fonction, parcours et historique de publication. Des prises de parole hors du site. Des personnes citées par des tiers.",
+  down:"Des contenus non signés. Des experts qui n'existent que sur le site de la marque. Des porte parole de notoriété présentés comme des cautions techniques.",
+  obs:"Repérage des personnes nommées dans les réponses des moteurs et des sources qui les citent.",
+  vs:"Ne pas confondre avec la Corroboration : la Légitimité dit qui parle, la Corroboration dit qui valide.",
+  lpp:"Statut institutionnel reconnu, ancrage sectoriel affirmé."}];
+const PAIRES=[
+ ["Consistance et Profondeur","La Consistance mesure si l'on dit partout la même chose. La Profondeur mesure si l'on a quelque chose à dire.","Une marque au discours parfaitement aligné mais tenu en trois phrases : Consistance haute, Profondeur basse."],
+ ["Profondeur et Stabilité","La Profondeur est une photographie de la matière disponible. La Stabilité est la régularité de sa production dans le temps.","Un site très riche mais figé depuis trois ans : Profondeur haute, Stabilité basse."],
+ ["Corroboration et Circulation","La Corroboration, c'est un tiers qui confirme. La Circulation, c'est un discours qui voyage.","Deux études indépendantes très crédibles mais confidentielles : Corroboration haute, Circulation basse."],
+ ["Légitimité et Corroboration","La Légitimité répond à qui porte le discours. La Corroboration répond à qui le valide.","Un expert reconnu qui ne publie que sur le site de la marque : ni l'un ni l'autre ne progresse."]];
+const ANALYSE=[["Les sources","Chaque réponse cite des domaines. Ils sont classés par nature, propriétaire, groupe, concurrent, institutionnel, emploi, presse, encyclopédie, puis comptés et dédoublonnés. C'est ce qui dit qui écrit le récit du marché.","6 597 sources pour La Poste Pro, dont 43,5 % propriétaires et 31,2 % dispersées sur 627 domaines."],
+ ["Les territoires","La présence spontanée est recalculée territoire par territoire, et comparée à celle de chaque acteur du benchmark. Une marque peut dominer le marché et perdre un terrain.","Cinq territoires tenus sur six, la signature électronique concédée à 8,3 points."],
+ ["Les audiences","Pour chaque persona, on relève une question réelle et les acteurs que le modèle cite en retour. L'absence est documentée telle quelle, sans interprétation.","Isaure et Sarah absentes de leur réponse, Manuel cité."],
+ ["Le sentiment","Le ton est relevé sur les réponses où la marque apparaît, en spontané et en sollicité, puis réparti en quatre catégories.","64,3 % de positif en spontané, zéro négatif sur l'ensemble."],
+ ["Les verbatims","Des extraits réels de réponses sont conservés, avec le moteur qui les produit, pour donner à lire le discours tel qu'il circule.","Six verbatims représentatifs, dont une attribution erronée à Relais Colis."]];
+
+/* ═══ Lexique ═══ */
+const LEX=[["GEO","Generative Engine Optimization : travailler sa présence dans les réponses des IA. Le prolongement du SEO."],
+ ["LLM","Large Language Model : le moteur d'IA générative qui répond en langage naturel."],
+ ["Prompt","La question posée à l'IA, formulée en langage naturel, comme dans une vraie conversation."],
+ ["Fan-out","L'IA éclate une question en plusieurs sous requêtes, puis agrège les sources : elle élargit ce qu'elle va chercher."],
+ ["Moment of Query","La situation réelle dans laquelle une personne interroge l'IA. C'est le point de départ des prompts."],
+ ["Mention","La marque est nommée dans la réponse, avec ou sans lien cliquable."],
+ ["Citation","Un lien cliquable vers le site officiel de la marque apparaît dans la réponse."],
+ ["Sentiment","La tonalité du propos sur la marque : positif, neutre, mitigé ou négatif."],
+ ["Spontané et sollicité","Spontané : la question ne nomme pas la marque, c'est l'autorité réelle. Sollicité : on la nomme, c'est l'hygiène de marque."],
+ ["Source","Un site cité par l'IA pour appuyer sa réponse."]];
 
 /* ═══ LA POSTE PRO · rendu du dashboard ═══ */
 const E=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
@@ -1698,24 +1961,6 @@ const LOCKS=[
 Q('locks').innerHTML=LOCKS.map(l=>`<div class="lk"><div class="k">${E(l[0])}</div><h4>${E(l[1])}</h4>
  <div class="val">${E(l[2])}</div><p>${E(l[3])}</p></div>`).join('');
 
-const SFAM=[
- {k:"Maîtrisé en interne",t:"Ce que la marque produit et contrôle",c:"int",
-  d:"Trois signaux qui décrivent le corpus propre de la marque : a-t-elle quelque chose à dire, le dit-elle pareil partout, et le dit-elle dans la durée.",
-  l:[["Consistance","Même discours, sans contradiction, sur tous les canaux."],
-    ["Profondeur","Un corpus dense et substantiel sur les territoires revendiqués, pas du volume superficiel."],
-    ["Stabilité","Une présence éditoriale continue sur vingt quatre mois et plus."]],
-  r:"<b>Règle d'affichage : à présence.</b> La valeur est celle mesurée là où la marque apparaît, sans rebasage. L'absence ne dit rien sur la qualité du corpus ; un zéro signifierait à tort que le corpus est mauvais. Sur La Poste Pro : 50, 15 et 29."},
- {k:"Ratifié par l'écosystème",t:"Ce que les tiers font de la marque",c:"eco",
-  d:"Trois signaux qui ne dépendent pas de la marque mais de ce que les autres en font. Aucun contenu publié sur son propre site ne les fait monter.",
-  l:[["Corroboration","Des tiers fiables confirment ce que la marque affirme."],
-    ["Circulation","Le discours est repris et se diffuse au delà des canaux de la marque."],
-    ["Légitimité","Des auteurs et des experts identifiés portent les contenus."]],
-  r:"<b>Règle d'affichage : rebasés sur le marché.</b> La valeur est ramenée sur le total, les absences comptant zéro : être absent d'une réponse <b>est</b> une non ratification réelle. Sur La Poste Pro : 70, 65 et 69."}];
-Q('sfam').innerHTML=SFAM.map(f=>`<div class="sf ${f.c==='eco'?'eco':''}"><div class="k">${E(f.k)}</div>
- <h4>${E(f.t)}</h4><p>${E(f.d)}</p>
- ${f.l.map(x=>`<div class="sl"><b>${E(x[0])}</b><p>${E(x[1])}</p></div>`).join('')}
- <div class="rule">${f.r}</div></div>`).join('');
-
 const GRIDS=[
  {n:"Stabilité",q:"Dernière mise à jour visible du site et rythme de publication ? Dernier post sur le réseau principal, date et rythme moyen ? Régularité sur vingt quatre mois, ou trous ?",
   r:[["Publication régulière sur le site et sur les réseaux, continue sur vingt quatre mois","81 à 100"],["Régulière, mais un seul canal actif","61 à 80"],["Activité sporadique, trous visibles","41 à 60"],["Site rarement actualisé, ou réseau dormant depuis plus de douze mois","21 à 40"],["Aucune trace sur vingt quatre mois","0 à 20"]],
@@ -1811,6 +2056,89 @@ window.addEventListener('beforeprint',()=>{
   document.querySelectorAll('[data-w]').forEach(el=>{el.style.transition='none';el.style.width=Math.max(.8,+el.dataset.w)+'%'});
   const arc=Q('gArc');if(arc){arc.style.transition='none';arc.style.strokeDashoffset=(477.5-(477.5*A.score/100)).toFixed(1);Q('gNum').textContent=A.score}
 });
+
+/* ═══ Actions détaillées et méthode en trois parties ═══ */
+
+/* ─── onglet Actions ─── */
+Q('axTbl').innerHTML='<tr><th>Axe</th><th>Ce qu\'il vise</th><th>Signaux travaillés</th><th>Horizon</th><th>Actions</th></tr>'+
+ AXES.map(a=>`<tr class="axrow" data-ax="${a.n}" style="cursor:pointer">
+  <td><span style="font-family:var(--mono);color:${a.c}">0${a.n}</span> ${E(a.t)}</td>
+  <td style="font-weight:400">${E(a.o)}</td>
+  <td class="mono">${a.sig.join(' · ')}</td><td>${E(a.h)}</td>
+  <td class="num">${ACTS.filter(x=>x.ax===a.n).length}</td></tr>`).join('');
+
+const axOf=n=>AXES.find(a=>a.n===n);
+const acCard=a=>{const ax=axOf(a.ax),h=HOR[a.h];
+ return `<div class="ac" style="border-top-color:${ax.c}">
+  <div class="ac-h"><span class="ac-k" style="background:${ax.c}">${a.k}</span>
+   <span class="ac-ax">Axe 0${a.ax}</span><em style="color:${h[2]}">${h[0]}</em></div>
+  <h4>${E(a.t)}</h4><p>${E(a.txt)}</p>
+  <div class="pills">${a.sig.map(s=>`<span class="pill">${E(s)}</span>`).join('')}</div></div>`};
+function actRender(f){
+  let list=ACTS;
+  if(f.startsWith('h:'))list=ACTS.filter(a=>a.h===f.slice(2));
+  else if(f.startsWith('s:'))list=ACTS.filter(a=>a.sig.includes(f.slice(2)));
+  else if(f.startsWith('a:'))list=ACTS.filter(a=>a.ax===+f.slice(2));
+  Q('actGrid').innerHTML=list.map(acCard).join('');
+  Q('actCount').textContent=list.length+' action'+(list.length>1?'s':'');
+  Q('dialV').textContent=list.length; Q('progV').textContent=list.length+' action'+(list.length>1?'s':'');
+}
+actRender('all');
+Q('actF').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+ Q('actF').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false'));
+ b.setAttribute('aria-pressed','true');actRender(b.dataset.f)});
+Q('axTbl').addEventListener('click',e=>{const r=e.target.closest('.axrow');if(!r)return;
+ Q('actF').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false'));
+ actRender('a:'+r.dataset.ax);
+ Q('actGrid').scrollIntoView({behavior:'smooth',block:'start'})});
+Q('actNote').textContent=ACTNOTE;
+
+/* ─── méthode, partie 1 ─── */
+Q('ctx').innerHTML=CTX.map(c=>`<div class="card kpi"><div class="v"><span data-count="${c[0]}">0</span></div>
+ <p class="c">${E(c[1])}</p><p style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:8px">${E(c[2])}</p></div>`).join('');
+Q('ctxCle').textContent=CTXCLE;
+Q('jeu').innerHTML=JEU.map((j,i)=>`<div class="card"><span class="lbl">${i+1} · ${E(j[0])}</span>
+ <p style="font-size:13px;color:var(--ink-2);margin-top:9px">${E(j[1])}</p></div>`).join('');
+Q('jeuCle').textContent=JEUCLE;
+Q('pourq').innerHTML=POURQ.map(p=>`<div class="card" style="border-top:4px solid var(--framboise)">
+ <h4 style="font-size:16px">${E(p[0])}</h4><p style="font-size:12.5px;color:var(--ink-2);margin-top:8px">${E(p[1])}</p>
+ <p style="font-family:var(--mono);font-size:10.5px;color:var(--framboise);margin-top:10px">› ${E(p[2])}</p></div>`).join('');
+Q('cadrage').innerHTML=CADRAGE.map((c,i)=>`<div class="card" style="margin-top:12px">
+ <div style="display:flex;gap:14px;align-items:flex-start">
+  <span class="ac-k" style="background:var(--indigo)">${i+1}</span>
+  <div><h4 style="font-size:16px">${E(c[0])}</h4>
+   <p style="font-size:13px;color:var(--ink-2);margin-top:7px">${E(c[1])}</p>
+   <p style="font-size:12.5px;color:var(--muted);margin-top:7px">${E(c[2])}</p></div></div></div>`).join('');
+Q('persdim').innerHTML=PERSDIM.map((p,i)=>`<div class="card"><span class="lbl">${String(i+1).padStart(2,'0')}</span>
+ <b style="font-size:14px;display:block;margin-top:8px">${E(p[0])}</b>
+ <p style="font-size:12px;color:var(--muted);margin-top:4px">${E(p[1])}</p></div>`).join('');
+Q('persCle').textContent=PERSCLE;
+Q('parcours2').innerHTML=A.parcours.map((p,i)=>`<div class="stp" style="grid-template-columns:34px 1fr;padding:11px 0">
+ <div class="i" style="width:28px;height:28px;border-radius:9px;font-size:12px">${i+1}</div>
+ <div><b style="font-size:14px">${E(p[0])}</b><p style="margin-top:3px;font-size:12.5px">${E(p[1])}</p></div></div>`).join('');
+
+/* ─── méthode, partie 2 ─── */
+Q('n1').innerHTML=N1.map(n=>`<div class="sl" style="border-top:1px solid var(--line);padding:11px 0">
+ <b style="font-size:14px">${E(n[0])}</b><p style="font-size:12.5px;color:var(--ink-2);margin-top:4px">${E(n[1])}</p></div>`).join('');
+Q('sigdet').innerHTML=SIGDET.map(s=>`<div class="sgd ${s.f==='eco'?'eco':''}">
+ <div class="sgd-h"><h4>${E(s.n)}</h4><span class="q">${E(s.q)}</span>
+  <span class="v" style="color:${sCol(s.v)}">${s.v}<small>/100</small></span></div>
+ <p>${E(s.d)}</p>
+ <div class="sgd-g">
+  <div class="up"><span class="k">Ce qui le fait monter</span><p>${E(s.up)}</p></div>
+  <div class="down"><span class="k">Ce qui le fait baisser</span><p>${E(s.down)}</p></div></div>
+ <div class="sgd-f">
+  <div><span class="k">Comment il s'observe</span>${E(s.obs)}</div>
+  <div><span class="k">À ne pas confondre</span>${E(s.vs)}</div></div>
+ <div class="sgd-lpp"><b>Sur La Poste Pro, ${s.v} sur 100 :</b> ${E(s.lpp)} ${s.f==='int'?'Note corrigée à la main sur l\'observable.':'Valeur rebasée sur le marché, absences comprises.'}</div>
+</div>`).join('');
+Q('paires').innerHTML='<tr><th>On confond</th><th>Alors que</th><th>Cas typique</th></tr>'+
+ PAIRES.map(p=>`<tr><td>${E(p[0])}</td><td style="font-weight:400">${E(p[1])}</td><td style="font-weight:400;color:var(--muted)">${E(p[2])}</td></tr>`).join('');
+Q('analyse').innerHTML='<tr><th>Lecture</th><th>Ce qu\'elle produit</th><th>Sur La Poste Pro</th></tr>'+
+ ANALYSE.map(a=>`<tr><td>${E(a[0])}</td><td style="font-weight:400">${E(a[1])}</td><td style="font-weight:400;color:var(--violet)">${E(a[2])}</td></tr>`).join('');
+
+/* ─── lexique ─── */
+Q('lex').innerHTML=LEX.map(l=>`<div class="lex"><b>${E(l[0])}</b><p>${E(l[1])}</p></div>`).join('');
 
 </script>
 </body>
