@@ -1114,12 +1114,6 @@ td.cp{background:#E4F3EC;color:var(--vert);font-weight:600}
   <p class="duel-note" style="margin-top:14px" id="terrCle"></p>
 
   <div class="zone">
-    <div class="zhead"><div><h2>La cartographie du marché</h2>
-      <p class="desc">Part de présence spontanée de chaque acteur cité, tous territoires confondus.</p></div></div>
-    <div class="card" id="carto"></div>
-  </div>
-
-  <div class="zone">
     <div class="zhead"><div><h2>Le palmarès, territoire par territoire</h2>
       <p class="desc">Présence spontanée de chaque acteur du benchmark sur chacun des six territoires.</p></div></div>
     <div class="card"><div class="fscroll"><table class="ftbl auto" id="palm"></table></div></div>
@@ -1514,10 +1508,6 @@ const PALM={head:["La Poste Pro","Merci Facteur","Mondial Relay","Relais Colis",
   ["La domiciliation et le courrier entrant du créateur",76.7,0,13.3,6.7,0,16.7,6.7],
   ["La signature électronique et le coffre-fort numérique",75,4.2,12.5,12.5,0,8.3,8.3]]};
 
-/* Cartographie de marché : part de présence spontanée, tous acteurs cités */
-const CARTO=[["La Poste Pro",85.6],["Chronopost",38.3],["Mondial Relay",35],["Docusign",28.3],["UPS",27.8],["Yousign",24.4],["Sendcloud",23.9]];
-const CARTOCLE="Avec 85,6 % de présence spontanée, La Poste Pro devance Chronopost de 47,3 points, soit 2,2 fois plus présente que le deuxième acteur cité.";
-
 /* Personas */
 const PERS=[
  {n:"Isaure, créatrice",r:"Créatrice d'entreprise",t:"Consommateur final",
@@ -1627,7 +1617,7 @@ const PRIOC=[["Étoffer le corpus éditorial sur les usages quotidiens","Signal 
 
 /* Réserves de lecture : écarts internes au deck, à trancher avant diffusion */
 const RESERVES=[
- ["Présence spontanée : 87 % ou 85,6 %","La synthèse affiche 87 % de présence spontanée ; la cartographie concurrentielle et le détail donnent 85,6 %, soit 154 mentions sur 180 réponses spontanées. Le calcul du score retient 85,6 %."],
+ ["Présence spontanée : 87 % ou 85,6 %","La synthèse affiche 87 % de présence spontanée ; le détail des réponses donne 85,6 %, soit 154 mentions sur 180 réponses spontanées. Le calcul du score retient 85,6 %."],
  ["Citation pleine : 41 % ou 62,8 %","La synthèse affiche 41 % de citations complètes sur 154 mentions ; le détail donne 62,8 % de citations pleines sur l'ensemble des réponses spontanées. Les deux portent sur des bases différentes, une seule doit être affichée au client."],
  ["Présence totale à 50,8 %","Ce chiffre du détail est la présence pondérée, citations à 0,7 et mentions à 0,3, et non la présence brute, qui est de 85,6 %. L'intitulé du deck est à corriger."]];
 
@@ -2004,13 +1994,6 @@ Q('terrGrid').innerHTML=TERR.map(t=>{
   <div class="meta2"><div><span>En front</span>${E(t.front)}</div><div><span>Ce que les modèles associent</span>${E(t.asso)}</div></div>
  </div>`}).join('');
 Q('terrCle').textContent=TERRCLE;
-
-const cmax=CARTO[0][1];
-Q('carto').innerHTML=CARTO.map((c,i)=>`<div class="srow2 ${i===0?'self':''}">
- <span class="rk">${i+1}</span><span class="nm">${E(c[0])}</span>
- <span class="bar"><i style="width:0;background:${i===0?'var(--indigo)':'var(--muted)'}" data-w="${c[1]/cmax*100}"></i></span>
- <span class="v">${fr(c[1])} %</span></div>`).join('')+
- `<p class="duel-note" style="margin-top:14px">${E(CARTOCLE)}</p>`;
 
 const heat=v=>v===0?'#F4F4F8':v<10?'#EFEDF8':v<25?'#DCD5F0':v<50?'#B9ACE2':v<80?'#8E79CE':'#6E3AA8';
 Q('palm').innerHTML='<tr><th>Territoire</th>'+PALM.head.map(h=>`<th style="text-align:center">${E(h)}</th>`).join('')+'</tr>'+
