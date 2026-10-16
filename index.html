@@ -930,6 +930,41 @@ td.cp{background:#E4F3EC;color:var(--vert);font-weight:600}
   .sgd-g{grid-template-columns:repeat(2,1fr)!important}
 }
 
+/* ══════ TIROIR DE FICHE ══════ */
+.veil{position:fixed;inset:0;background:rgba(20,18,31,.55);opacity:0;pointer-events:none;transition:opacity .25s;z-index:80}
+.veil.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;top:0;right:0;bottom:0;width:min(720px,100%);background:var(--bg);z-index:81;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.3,1);overflow-y:auto;box-shadow:-18px 0 50px rgba(20,18,31,.25)}
+.sheet.on{transform:none}
+.sh-h{color:#fff;padding:24px 28px;position:relative}
+.sh-h .tags{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.sh-h .tags span{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.18);border-radius:100px;padding:5px 10px}
+.sh-h .tags .kk{background:#fff;color:var(--indigo);font-weight:700}
+.sh-h h3{font-size:23px;margin-top:14px;letter-spacing:-.03em}
+.sh-h .o{color:rgba(255,255,255,.8);font-size:14px;margin-top:8px}
+.sh-x{position:absolute;top:18px;right:20px;background:rgba(255,255,255,.2);border:0;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px}
+.sh-b{padding:22px 28px 60px}
+.sh-s{margin-top:22px}
+.sh-s>.lbl{display:block;margin-bottom:9px}
+.sh-card{background:#fff;border-radius:13px;padding:16px 18px;font-size:13.5px;color:var(--ink-2);box-shadow:var(--sh)}
+.sh-imp{display:flex;gap:14px;align-items:center;border-radius:13px;padding:16px 18px;color:#fff}
+.sh-imp b{font-family:var(--disp);font-size:19px}
+.sh-imp span{font-size:13px;color:rgba(255,255,255,.85)}
+.sh-sig div{background:#fff;border-radius:12px;padding:13px 16px;box-shadow:var(--sh);margin-bottom:8px}
+.sh-sig b{font-size:14px}
+.sh-sig p{font-size:12.5px;color:var(--ink-2);margin-top:4px}
+.sh-ex{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sh-ex div{background:#fff;border-radius:13px;padding:15px;box-shadow:var(--sh);border-left:4px solid var(--ambre)}
+.sh-ex div.nv{border-left-color:var(--cyan)}
+.sh-ex .k{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ambre)}
+.sh-ex div.nv .k{color:var(--cyan)}
+.sh-ex p{font-size:13px;color:var(--ink-2);margin-top:8px}
+.ac{cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.ac:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(20,18,31,.06),0 16px 34px rgba(20,18,31,.12)}
+.ac-imp{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;margin-top:11px}
+.ac-imp i{width:7px;height:7px;border-radius:50%;display:inline-block}
+@media (max-width:820px){.sh-ex{grid-template-columns:1fr}}
+@media print{.veil,.sheet{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -1157,9 +1192,12 @@ td.cp{background:#E4F3EC;color:var(--vert);font-weight:600}
       <button data-f="s:Corroboration" aria-pressed="false">Corroboration</button>
       <button data-f="s:Circulation" aria-pressed="false">Circulation</button>
       <button data-f="s:Légitimité" aria-pressed="false">Légitimité</button>
+      <button data-f="i:fort" aria-pressed="false">Impact fort</button>
+      <button data-f="i:moyen" aria-pressed="false">Impact modéré</button>
     </div>
     <div class="actgrid" style="margin-top:14px" id="actGrid"></div>
     <p style="font-size:12.5px;color:var(--muted);margin-top:14px" id="actNote"></p>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:8px" id="actNote2"></p>
   </div>
 
   <div class="zone">
@@ -1729,6 +1767,135 @@ const LEX=[["GEO","Generative Engine Optimization : travailler sa présence dans
  ["Spontané et sollicité","Spontané : la question ne nomme pas la marque, c'est l'autorité réelle. Sollicité : on la nomme, c'est l'hygiène de marque."],
  ["Source","Un site cité par l'IA pour appuyer sa réponse."]];
 
+/* ═══ Pour chaque action : impact attendu, signaux expliqués, deux exemples ═══
+   Les exemples sont des propositions, construites sur les éléments nommés dans le
+   diagnostic : offres, marques, sources citées, territoires, personas. */
+const ACTX={
+A1:{imp:"fort",impW:"Profondeur à 15 est le signal le plus bas du profil : toute matière de fond, datée et rangée, produit un gain mécanique dès le panel suivant.",
+ sw:[["Profondeur","Chaque page de fond ajoute de la matière citable sur un territoire revendiqué."],["Stabilité","Un espace alimenté à rythme régulier donne au modèle une date et une continuité à lire."]],
+ ex:[["Existe, à transformer","Les publications de Mon Mag Pro, aujourd'hui lues comme un flux d'actualité, regroupées dans un espace de marque daté et rangé par usage."],
+  ["Nouveau","Une entrée unique « envoyer, recevoir, prouver » qui rassemble les contenus des six territoires et sert de point d'arrivée aux posts LinkedIn."]]},
+A2:{imp:"fort",impW:"Stabilité à 29 : un modèle ne sait pas dater un contenu sans date visible. Redater un corpus existant est le gain le plus rapide du plan.",
+ sw:[["Stabilité","Une date de mise à jour visible et un versionnement rendent la régularité lisible par le modèle."]],
+ ex:[["Existe, à transformer","Les pages d'aide de aide.laposte.fr, deuxième domaine le plus cité avec 438 citations, redatées et marquées d'une date de dernière mise à jour."],
+  ["Nouveau","Une règle simple : aucune page pro publiée sans date de publication ni date de révision."]]},
+A3:{imp:"fort",impW:"Profondeur à 15, et deux personas sur trois absents de leur propre réponse : la matière existe, elle n'est pas rangée par besoin.",
+ sw:[["Profondeur","Une entrée par persona multiplie les points d'accroche sur des questions réellement posées."]],
+ ex:[["Existe, à transformer","Les contenus de Mon Mag Pro réorganisés en trois entrées : créateur comme Isaure, commerçant comme Manuel, profession libérale comme Sarah."],
+  ["Nouveau","Pour la créatrice, un parcours « je crée mon entreprise » qui relie domiciliation, courrier entrant et premiers envois, là où les modèles citent aujourd'hui Legalstart et Captain Contrat."]]},
+A4:{imp:"fort",impW:"Les comparatifs et les FAQ sont les formats que les modèles reprennent le plus volontiers, et ils manquent sur cinq des six territoires.",
+ sw:[["Profondeur","Un comparatif apporte l'arbitrage que le modèle va sinon chercher ailleurs."],["Consistance","Une réponse formulée pareil sur tous les territoires fixe le positionnement."]],
+ ex:[["Nouveau","Un comparatif « lettre recommandée papier, LRE et signature électronique » qui explique la valeur juridique de chacune, sur le territoire où ar24.fr pèse 144 citations."],
+  ["Nouveau","Une FAQ « envoyer un colis quand on est garagiste » qui répond aux questions de Manuel, là où le modèle cite Chronopost, DHL et Sendcloud."]]},
+A5:{imp:"fort",impW:"Un corpus evergreen daté nourrit la Profondeur et la Stabilité en même temps : c'est le seul format qui fait monter deux signaux bas d'un coup.",
+ sw:[["Profondeur","Un socle permanent par territoire, plutôt que des pages d'actualité qui vieillissent."],["Stabilité","Une mise à jour annoncée chaque année installe un rythme vérifiable."]],
+ ex:[["Nouveau","Six pages de référence, une par territoire, revues chaque année à date fixe et marquées comme telles."],
+  ["Existe, à transformer","Les contenus de lastation.laposte.fr, déjà cités 99 fois, repris en pages de référence durables plutôt qu'en actualité."]]},
+A6:{imp:"fort",impW:"Docaposte apparaît dans les sources du marché avec 66 citations, mais aucune page ne relie ces offres au petit pro : la matière existe, elle n'est pas raccordée.",
+ sw:[["Profondeur","Une offre documentée, tarifée et accessible devient une réponse possible pour le modèle."]],
+ ex:[["Existe, à transformer","docaposte.com et business.digiposte.fr, déjà cités, reliés depuis laposte.fr par une page qui parle au petit pro et non à la grande entreprise."],
+  ["Nouveau","Une fiche par offre : à quoi elle sert, pour qui, combien elle coûte, en combien de temps on y accède."]]},
+A7:{imp:"moyen",impW:"Corroboration à 70 : la base est là, mais la presse spécialisée pro est le segment le moins couvert parmi les sources citées.",
+ sw:[["Corroboration","Un tiers crédible qui reprend la marque vaut plus que dix pages publiées par elle."]],
+ ex:[["Nouveau","Une liste de dix titres et syndicats, construite à partir des domaines déjà cités par les modèles : ecommercemag.fr, relationclientmag.fr, village-justice.com, lafabriquedunet.fr."],
+  ["Nouveau","Un classement par territoire : qui parle du recommandé, qui parle du point relais, qui parle de la signature."]]},
+A8:{imp:"moyen",impW:"Légitimité à 69 : la marque est reconnue comme institution, pas comme auteur. Une tribune signée transforme la seconde lecture.",
+ sw:[["Légitimité","Un propos signé par une personne identifiable est distingué d'un propos d'entité."],["Corroboration","Publié chez un tiers, il devient une source extérieure."]],
+ ex:[["Nouveau","Une tribune sur la preuve d'envoi électronique proposée à village-justice.com, lu par les professions libérales comme Sarah."],
+  ["Nouveau","Une donnée exclusive sur les volumes d'envois des petits pros, offerte à ecommercemag.fr avant publication sur le site."]]},
+A9:{imp:"fort",impW:"Une donnée propriétaire, datée et citable est le format que les modèles reprennent le plus : c'est ce qui fait passer de sujet à source.",
+ sw:[["Légitimité","Un baromètre porte une signature et une méthode, deux choses que le modèle sait attribuer."],["Corroboration","Les reprises du baromètre deviennent autant de sources tierces."]],
+ ex:[["Nouveau","Un baromètre annuel des pratiques d'envoi des TPE, publié en page web citable plutôt qu'en PDF."],
+  ["Nouveau","Une édition par territoire : recommandé, colis, point relais, domiciliation, signature."]]},
+A10:{imp:"fort",impW:"Les contenus structurés, FAQ et chiffres datés, sont directement extraits par les modèles : l'effet se voit au panel suivant.",
+ sw:[["Profondeur","Un contenu structuré est lisible sans interprétation, donc exploitable."],["Circulation","Un format réutilisable circule chez les tiers sans effort supplémentaire."]],
+ ex:[["Existe, à transformer","Les réponses d'aide.laposte.fr balisées en questions et réponses, avec un chiffre daté par réponse."],
+  ["Nouveau","Un jeu de chiffres clés publiés et datés : délais, volumes, couverture du réseau, réutilisables par un tiers."]]},
+A11:{imp:"moyen",impW:"Les domaines publics pèsent 576 citations dans le marché. Y figurer est lent, mais c'est la caution la plus forte pour un modèle.",
+ sw:[["Légitimité","Être nommé par une institution vaut reconnaissance de statut."],["Corroboration","Un domaine en gouv.fr est traité comme une source de référence."]],
+ ex:[["Existe, à transformer","La présence déjà constatée sur francenum.gouv.fr et entreprises.gouv.fr, transformée en contribution régulière plutôt qu'en mention."],
+  ["Nouveau","Une fiche pratique sur la dématérialisation du courrier, co-signée avec une CCI, hébergée chez elle."]]},
+A12:{imp:"moyen",impW:"Les fédérations professionnelles publient peu mais sont lues : l'effet est durable et se cumule avec les relais presse.",
+ sw:[["Corroboration","Une fédération qui reprend la marque la valide auprès de ses adhérents et des modèles."]],
+ ex:[["Nouveau","Un guide des envois professionnels co-publié avec une fédération de commerçants, hébergé sur son site."],
+  ["Nouveau","Une intervention annuelle au congrès d'une fédération artisanale, avec compte rendu web."]]},
+A13:{imp:"fort",impW:"Le diagnostic montre où la marque n'est pas en tête : cartographier ces requêtes transforme un constat en liste de travail immédiate.",
+ sw:[["Circulation","On ne récupère que les requêtes que l'on a identifiées comme perdues."]],
+ ex:[["Existe, à transformer","Les questions des trois personas où la marque est absente de la réponse, reprises comme première liste."],
+  ["Nouveau","Vingt requêtes génériques suivies chaque mois : envoyer un recommandé en ligne, point relais près de chez moi, domicilier son entreprise."]]},
+A14:{imp:"fort",impW:"Le recommandé est le territoire le mieux tenu, à 97,9 %, mais ar24.fr y pèse 144 citations : l'optimisation des entrées est défensive et rapide.",
+ sw:[["Consistance","Un titre et une entrée de page qui emploient les mots de l'utilisateur fixent le sujet."],["Circulation","Une page bien nommée est reprise plus facilement par les tiers."]],
+ ex:[["Existe, à transformer","La page du recommandé en ligne, dont le titre reprend la formulation réelle « envoyer un recommandé en ligne »."],
+  ["Nouveau","Une entrée dédiée à la valeur juridique de la LRE eIDAS, terme que les modèles associent déjà à la marque."]]},
+A15:{imp:"fort",impW:"Le point relais n'est tenu que de 3,4 points face à Mondial Relay : des pages par cas d'usage sont la défense la plus directe.",
+ sw:[["Circulation","Une page par intention capte la requête là où elle se formule."],["Profondeur","Chaque cas d'usage documenté ajoute de la matière sur le territoire."]],
+ ex:[["Nouveau","Une page « colis retour en point relais » qui répond à la requête du commerçant, face à Mondial Relay et Relais Colis."],
+  ["Nouveau","Une page « recommandé urgent » qui dit le délai, la preuve obtenue et le coût."]]},
+A16:{imp:"moyen",impW:"La vidéo est une source secondaire pour ce marché, mais youtube.com figure déjà parmi les domaines cités : le format est lisible s'il est transcrit.",
+ sw:[["Circulation","Une vidéo transcrite devient un texte citable, pas seulement une vue."]],
+ ex:[["Nouveau","Trois formats courts : déposer un colis, envoyer un recommandé, suivre une livraison, transcrits sur les pages correspondantes."],
+  ["Nouveau","Une capsule tournée dans un bureau de poste pro, publiée avec sa transcription."]]},
+A17:{imp:"moyen",impW:"Le suivi ne fait pas monter le score par lui même, mais il est la condition pour savoir ce qui le fait monter.",
+ sw:[["Circulation","Mesurer les positions sur les requêtes sans marque dit si le discours circule vraiment."]],
+ ex:[["Nouveau","Un tableau mensuel des vingt requêtes génériques, avec la position et l'acteur cité en premier."],
+  ["Existe, à transformer","Le panel de 60 questions du diagnostic, rejoué chaque trimestre à l'identique."]]},
+A18:{imp:"moyen",impW:"Les requêtes de confiance numérique émergent : les couvrir tôt coûte peu et protège le territoire le plus disputé.",
+ sw:[["Consistance","Le même vocabulaire employé partout rend la marque reconnaissable sur un sujet nouveau."],["Profondeur","Couvrir un champ sémantique entier demande de la matière, pas une page."]],
+ ex:[["Nouveau","Un lexique de la confiance numérique : LRE, eIDAS, coffre-fort, cachet, horodatage, publié et relié aux offres."],
+  ["Nouveau","Une veille des formulations nouvelles repérées dans les réponses des modèles, reversée au plan éditorial."]]},
+A19:{imp:"moyen",impW:"Les partenaires existent déjà : les recenser ne crée pas de citation, mais conditionne toutes les actions de ratification qui suivent.",
+ sw:[["Corroboration","On ne fait reprendre que par des tiers que l'on a identifiés et outillés."]],
+ ex:[["Existe, à transformer","Les plateformes e-commerce déjà citées dans les sources du marché : shopify.com, apps.shopify.com, shippingbo.com, boxtal.com."],
+  ["Nouveau","Une cartographie des réseaux de franchisés et des associations de commerçants, par région."]]},
+A20:{imp:"moyen",impW:"Un kit co-brandé produit des reprises rapides, mais chez des tiers de poids inégal : l'effet dépend des partenaires retenus.",
+ sw:[["Circulation","Un contenu prêt à publier voyage sans négociation supplémentaire."],["Corroboration","Publié chez le partenaire, il devient une source tierce."]],
+ ex:[["Nouveau","Une page « expédier depuis votre boutique en ligne » proposée aux plateformes e-commerce partenaires."],
+  ["Nouveau","Un encart « preuve d'envoi » proposé aux outils de gestion utilisés par les professions libérales, comme indy.fr, déjà cité dans le marché."]]},
+A21:{imp:"fort",impW:"Légitimité à 69 : des clients nommés et datés sont la preuve que les modèles savent attribuer, et elle manque sur les cinq territoires gagnés.",
+ sw:[["Légitimité","Un témoignage nommé donne une personne à citer, pas une entité."],["Corroboration","Un client qui publie le témoignage chez lui crée une source extérieure."]],
+ ex:[["Nouveau","Un garagiste comme Manuel, nommé et daté, qui raconte ses envois quotidiens de pièces détachées."],
+  ["Nouveau","Un cabinet d'avocats qui documente sa chaîne de preuve d'envoi, publié aussi sur son propre site."]]},
+A22:{imp:"fort",impW:"Les comparatifs de la presse spécialisée sont systématiquement lus par les modèles pour arbitrer : y figurer déplace directement la réponse.",
+ sw:[["Corroboration","Être comparé par un tiers vaut validation implicite de l'offre."]],
+ ex:[["Nouveau","Figurer dans les comparatifs d'solutions d'expédition de ecommercemag.fr, aux côtés de Sendcloud et Boxtal."],
+  ["Nouveau","Fournir une fiche produit complète et datée aux rédactions qui publient ces comparatifs."]]},
+A23:{imp:"moyen",impW:"Un label crée des mentions durables chez les revendeurs, mais son effet n'apparaît qu'une fois le réseau équipé.",
+ sw:[["Légitimité","Un label nommé et attribué est un objet que le modèle peut citer."],["Circulation","Chaque revendeur qui l'affiche crée un point de diffusion."]],
+ ex:[["Nouveau","Un label « partenaire envoi pro » affiché sur le site de chaque revendeur agréé, avec un lien vers la page de référence."],
+  ["Nouveau","Une page publique qui liste les partenaires labellisés, mise à jour et datée."]]},
+A24:{imp:"moyen",impW:"Les cas clients co-publiés cumulent corroboration et circulation, mais demandent un accord partenaire pour chaque publication.",
+ sw:[["Corroboration","Le cas est publié par le partenaire, donc confirmé de l'extérieur."],["Circulation","Il circule dans deux écosystèmes à la fois."]],
+ ex:[["Nouveau","Un cas client publié avec une plateforme e-commerce : combien d'expéditions, quels délais, quel gain mesuré."],
+  ["Existe, à transformer","Les intégrations déjà visibles sur apps.shopify.com, documentées en cas d'usage plutôt qu'en fiche technique."]]},
+A25:{imp:"fort",impW:"Signature électronique : seul territoire perdu, à 8,3 points de Docusign. Une offre sans nom ni tarif ne peut pas être citée.",
+ sw:[["Consistance","Une offre nommée une fois pour toutes devient un objet stable pour le modèle."]],
+ ex:[["Existe, à transformer","Les briques Docaposte et Certinomis, déjà associées à la marque par les modèles, réunies sous une offre nommée pour les indépendants."],
+  ["Nouveau","Une grille tarifaire publique, condition pour apparaître dans les comparatifs face à Yousign et Docusign."]]},
+A26:{imp:"fort",impW:"Docaposte est cité dans le marché mais jamais relié au petit pro : une page d'entrée fait le raccord que le modèle ne fait pas seul.",
+ sw:[["Consistance","Le lien explicite entre la marque et sa filiale évite la lecture en acteurs séparés."],["Profondeur","La page porte les usages, les preuves et les cas, pas seulement l'offre."]],
+ ex:[["Nouveau","Une page laposte.fr « signer, prouver, archiver » qui relie Docaposte, Digiposte et Certinomis aux usages d'un indépendant."],
+  ["Existe, à transformer","Les contenus de business.digiposte.fr, déjà cités 43 fois, raccrochés à cette page d'entrée."]]},
+A27:{imp:"fort",impW:"Profondeur à 15 sur un territoire perdu : expliquer la LRE et le coffre-fort est à la fois de la matière et une prise de position.",
+ sw:[["Profondeur","Le sujet est technique : il se gagne par l'explication, pas par la promesse."]],
+ ex:[["Nouveau","Un dossier « quelle preuve pour quel document » qui distingue LRE, signature et archivage, avec le cadre réglementaire."],
+  ["Nouveau","Une page qui répond à la question de Sarah sur la valeur juridique des preuves d'envoi électronique."]]},
+A28:{imp:"moyen",impW:"Le réseau physique est l'actif que les concurrents numériques n'ont pas : l'associer au récit numérique est différenciant, mais c'est un travail de positionnement.",
+ sw:[["Consistance","Un même récit qui tient le numérique et le physique évite la lecture en acteur logistique parmi d'autres."]],
+ ex:[["Nouveau","Un récit « le tiers de confiance qui a aussi un bureau », décliné sur les pages signature et recommandé."],
+  ["Existe, à transformer","Les 17 000 points de contact du réseau, aujourd'hui argument logistique, employés comme preuve de confiance de proximité."]]},
+A29:{imp:"moyen",impW:"La souveraineté est un angle crédible face à Docusign, mais il ne produit des citations qu'une fois porté par des tiers.",
+ sw:[["Consistance","Un positionnement tranché est plus facile à restituer qu'une offre généraliste."],["Légitimité","L'angle souverain appelle des cautions institutionnelles identifiables."]],
+ ex:[["Nouveau","Une page qui compare hébergement, conformité et juridiction applicable, face aux acteurs américains."],
+  ["Nouveau","Une prise de parole sur la souveraineté de la preuve numérique, proposée à la presse spécialisée."]]},
+A30:{imp:"moyen",impW:"Les prescripteurs juridiques et comptables sont lus par les modèles sur ce territoire : l'effet est indirect mais durable.",
+ sw:[["Légitimité","Un expert-comptable ou un notaire qui recommande la solution porte une autorité propre."],["Corroboration","Leurs publications et annuaires deviennent des sources tierces."]],
+ ex:[["Nouveau","Un partenariat avec un réseau d'experts-comptables, avec une fiche hébergée chez eux."],
+  ["Existe, à transformer","La présence sur avocatfrance.fr et village-justice.com, étendue à une contribution régulière."]]}
+};
+const ACTXNOTE="Les deux exemples de chaque fiche sont des propositions de YouLoveWords, construites sur les éléments nommés dans le diagnostic : offres, marques, domaines cités, territoires et personas. Ils ne figurent pas comme tels dans l'audit et restent à valider avec l'équipe. Le niveau d'impact croise le signal travaillé et l'enjeu du territoire : fort quand le gain est mécanique et visible au panel suivant, modéré quand il s'accumule dans la durée.";
+const IMPL={fort:["Impact fort","#C93B36"],moyen:["Impact modéré","#C77924"]};
+const HORL={qw:"effet attendu à court terme",mt:"effet attendu à moyen terme",lt:"effet attendu à long terme"};
+
 /* ═══ LA POSTE PRO · rendu du dashboard ═══ */
 const E=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const Q=id=>document.getElementById(id);
@@ -2139,6 +2306,67 @@ Q('analyse').innerHTML='<tr><th>Lecture</th><th>Ce qu\'elle produit</th><th>Sur 
 
 /* ─── lexique ─── */
 Q('lex').innerHTML=LEX.map(l=>`<div class="lex"><b>${E(l[0])}</b><p>${E(l[1])}</p></div>`).join('');
+
+/* ═══ Fiches d'action : impact, signaux expliqués, exemples ═══ */
+const veil=document.createElement('div');veil.className='veil';
+const sheet=document.createElement('div');sheet.className='sheet';sheet.setAttribute('role','dialog');
+document.body.appendChild(veil);document.body.appendChild(sheet);
+function shOpen(h){sheet.innerHTML=h;veil.classList.add('on');sheet.classList.add('on');sheet.scrollTop=0;document.body.style.overflow='hidden'}
+function shClose(){veil.classList.remove('on');sheet.classList.remove('on');document.body.style.overflow=''}
+veil.addEventListener('click',shClose);
+sheet.addEventListener('click',e=>{if(e.target.closest('.sh-x'))shClose()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')shClose()});
+
+function actSheet(k){
+  const a=ACTS.find(x=>x.k===k); if(!a)return;
+  const x=ACTX[k]||{}, ax=axOf(a.ax), h=HOR[a.h], im=IMPL[x.imp||'moyen'];
+  shOpen(`<div class="sh-h" style="background:linear-gradient(130deg,var(--indigo),${ax.c} 115%)">
+   <button class="sh-x" aria-label="Fermer">✕</button>
+   <div class="tags"><span class="kk">${a.k}</span><span>Axe 0${a.ax}</span><span>${E(h[0])}</span>${a.sig.map(s=>`<span>${E(s)}</span>`).join('')}</div>
+   <h3>${E(a.t)}</h3><p class="o">${E(a.txt)}</p></div>
+  <div class="sh-b">
+   <div class="sh-s"><span class="lbl">L'impact attendu</span>
+     <div class="sh-imp" style="background:linear-gradient(120deg,${im[1]},${ax.c} 150%)">
+       <div><b>${im[0]} · ${E(HORL[a.h])}</b><br><span>${E(x.impW||'')}</span></div></div></div>
+   <div class="sh-s"><span class="lbl">Pourquoi cette action, dans le diagnostic</span>
+     <div class="sh-card">${E(ax.why)}</div></div>
+   <div class="sh-s"><span class="lbl">Les signaux qu'elle fait progresser</span>
+     <div class="sh-sig">${(x.sw||a.sig.map(s=>[s,'']))
+       .map(s=>{const sg=SIG.find(g=>g.n===s[0]);
+        return `<div><div style="display:flex;justify-content:space-between;align-items:baseline">
+         <b>${E(s[0])}</b><span style="font-family:var(--mono);font-size:13px;color:${sCol(sg?sg.v:50)}">${sg?sg.v:''}<small style="color:var(--muted)">/100</small></span></div>
+         <p>${E(s[1])}</p></div>`}).join('')}</div></div>
+   ${x.ex?`<div class="sh-s"><span class="lbl">Deux exemples</span><div class="sh-ex">
+     ${x.ex.map(e=>`<div class="${e[0]==='Nouveau'?'nv':''}"><div class="k">${E(e[0])}</div><p>${E(e[1])}</p></div>`).join('')}</div>
+     <p style="font-size:12px;color:var(--muted);margin-top:10px">Propositions construites sur les éléments nommés dans le diagnostic, à valider avec l'équipe.</p></div>`:''}
+   <div class="sh-s"><span class="lbl">Ce que change l'axe 0${a.ax}</span>
+     <div class="sh-card">${E(ax.cle)}</div></div>
+  </div>`);
+}
+
+/* carte enrichie */
+const acCard2=a=>{const ax=axOf(a.ax),h=HOR[a.h],x=ACTX[a.k]||{},im=IMPL[x.imp||'moyen'];
+ return `<div class="ac" data-ak="${a.k}" style="border-top-color:${ax.c}">
+  <div class="ac-h"><span class="ac-k" style="background:${ax.c}">${a.k}</span>
+   <span class="ac-ax">Axe 0${a.ax}</span><em style="color:${h[2]}">${h[0]}</em></div>
+  <h4>${E(a.t)}</h4><p>${E(a.txt)}</p>
+  <div class="pills">${a.sig.map(s=>`<span class="pill">${E(s)}</span>`).join('')}</div>
+  <span class="ac-imp" style="color:${im[1]}"><i style="background:${im[1]}"></i>${im[0]} · ${E(HORL[a.h])}</span></div>`};
+
+function actRender2(f){
+  let list=ACTS;
+  if(f.startsWith('h:'))list=ACTS.filter(a=>a.h===f.slice(2));
+  else if(f.startsWith('s:'))list=ACTS.filter(a=>a.sig.includes(f.slice(2)));
+  else if(f.startsWith('a:'))list=ACTS.filter(a=>a.ax===+f.slice(2));
+  else if(f.startsWith('i:'))list=ACTS.filter(a=>(ACTX[a.k]||{}).imp===f.slice(2));
+  Q('actGrid').innerHTML=list.map(acCard2).join('');
+  Q('actCount').textContent=list.length+' action'+(list.length>1?'s':'');
+  Q('dialV').textContent=list.length; Q('progV').textContent=list.length+' action'+(list.length>1?'s':'');
+}
+actRender=actRender2;
+actRender2('all');
+Q('actNote2').textContent=ACTXNOTE;
+document.addEventListener('click',e=>{const c=e.target.closest('.ac[data-ak]');if(c)actSheet(c.dataset.ak)});
 
 </script>
 </body>
